@@ -151,14 +151,14 @@ if __name__ == "__main__":
         os.makedirs(args.outputpath)
 
 
-    input_source= 'D:\\st-gcn\\data\\KTH\\training_lib_KTH_cut_6s\\jogging\\person01_jogging_d1_uncomp(003320-021320).avi'
+    input_source= ('D:\\st-gcn\\data\\record_night\\action_videos\\一道\\姚雅倩_一道_d1.mkv')
     # input_source ='C:\\Users\\Administrator\\Desktop\\pyspace\\pyskl-main\\demo\\ntu_sample.avi'
     filename = re.split(r'\\',input_source)[-1] + '.json'
     cfg.filename = filename
 
 
 
-    det_loader = DetectionLoader(input_source, get_detector(args), cfg, args, batchSize=4, mode=mode, queueSize=1024)
+    det_loader = DetectionLoader(input_source, get_detector(args), cfg, args, batchSize=1, mode=mode, queueSize=1024)
     det_worker = det_loader.start()
 
     # Load pose model

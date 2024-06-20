@@ -8,7 +8,7 @@ import re
 alphapose_json_folder = 'D:\\AlphaPose\\examples\\res'
 out_kinetics_folder = 'D:\\st-gcn\\data\\KTH\\kinetics-skeleton\\kinetics_train'
 
-label_names = ['boxing', 'handclapping', 'handwaving', 'jogging', 'running', 'walking']
+label_names = ['一道', '七道', '三道', '九道', '二道', '五道', '八道', '六道', '四道']
 for jsonfile in os.listdir(alphapose_json_folder):
     alphapose_json_path = os.path.join(alphapose_json_folder, jsonfile)
     with open(alphapose_json_path, 'r') as file:

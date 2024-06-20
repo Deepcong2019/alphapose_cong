@@ -40,6 +40,7 @@ class DetectionLoader():
         if (self.datalen) % batchSize:
             leftover = 1
         self.num_batches = self.datalen // batchSize + leftover
+        print('num_batches: {}'.format(self.num_batches))
 
         self._input_size = cfg.DATA_PRESET.IMAGE_SIZE
         self._output_size = cfg.DATA_PRESET.HEATMAP_SIZE
@@ -189,6 +190,7 @@ class DetectionLoader():
                 # if the `grabbed` boolean is `False`, then we have
                 # reached the end of the video file
                 if not grabbed or self.stopped:
+                    print("grabbed:", grabbed)
                     # put the rest pre-processed data to the queue
                     if len(imgs) > 0:
                         with torch.no_grad():

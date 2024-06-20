@@ -138,13 +138,18 @@ if __name__ == "__main__":
     pose_model.eval()
 
 
-    video_paths = 'D:\\st-gcn\\data\\KTH\\training_lib_KTH_cut_6s'
+    video_paths = 'D:\\st-gcn\\data\\record_night\\action_videos'
     action_folders = os.listdir(video_paths) # label_names
     print('action_folders:', action_folders)
+    count = 0
     for folder in action_folders:
+
         avi_paths = os.path.join(video_paths, folder)
+
         for avi in os.listdir(avi_paths):
+            count += 1
             avi_path = os.path.join(avi_paths, avi)
+            print(count)
             print('avi_path: ', avi_path)
             # input_source= 'D:\\st-gcn\\data\\KTH\\training_lib_KTH_cut_6s\\jogging\\person01_jogging_d1_uncomp(003320-021320).avi'
             # input_source ='C:\\Users\\Administrator\\Desktop\\pyspace\\pyskl-main\\demo\\ntu_sample.avi'
