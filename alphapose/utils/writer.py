@@ -14,8 +14,8 @@ from alphapose.utils.pPose_nms import pose_nms, write_json
 DEFAULT_VIDEO_SAVE_OPT = {
     'savepath': 'examples/res/1.mp4',
     'fourcc': cv2.VideoWriter_fourcc(*'mp4v'),
-    'fps': 25,
-    'frameSize': (640, 480)
+    'fps': 30,
+    'frameSize': (1280, 720)
 }
 
 EVAL_JOINTS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
@@ -84,6 +84,7 @@ class DataWriter():
         if self.save_video:
             # initialize the file video stream, adapt ouput video resolution to original video
             stream = cv2.VideoWriter(*[self.video_save_opt[k] for k in ['savepath', 'fourcc', 'fps', 'frameSize']])
+            print('streaming video...')
             if not stream.isOpened():
                 print("Try to use other video encoders...")
                 ext = self.video_save_opt['savepath'].split('.')[-1]
@@ -91,6 +92,7 @@ class DataWriter():
                 self.video_save_opt['fourcc'] = fourcc
                 self.video_save_opt['savepath'] = self.video_save_opt['savepath'][:-4] + _ext
                 stream = cv2.VideoWriter(*[self.video_save_opt[k] for k in ['savepath', 'fourcc', 'fps', 'frameSize']])
+
             assert stream.isOpened(), 'Cannot open video for writing'
         # keep looping infinitelyd
         while True:
@@ -147,6 +149,11 @@ class DataWriter():
 
                 _result = []
                 for k in range(len(scores)):
+                    # print('ssss:', preds_img[k])
+                    preds_img[k][:, 0] /= 1280
+                    preds_img[k][:, 1] /= 720
+                    # print('qqqq: ', preds_img[k])
+
                     _result.append(
                         {
                             'keypoints':preds_img[k],
